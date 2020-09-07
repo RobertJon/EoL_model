@@ -29,15 +29,23 @@ classdef EoLmodel
             switch treatment
                 case 'split credits' 
                     credit = model.credit;
-                    credits = ones(1,numel(LCE));
-                    credits(1) = eval(extractBefore(credit,3));
-                    credits(end) = eval(extractAfter(credit,3)); 
-                    EoL_energy = credits;
+                    EoL_energy = ones(1,numel(LCE));
+                    EoL_energy(1) = eval(extractBefore(credit,3));
+                    EoL_energy(end) = eval(extractAfter(credit,3)); 
                     
                 case 'correction factor'
                     degradation = model.degradation;
-                    CF = (100-eval(extractBefore(degradation,'%')))/100;
+                    CF = (100-eval(extractBefore(degradation,'%')))/100; %Convert char to double
                     EoL_energy = model.EEoL*CF;
+                    
+                case 'alternative material'
+                    
+                case 'allocation'
+                
+                case 'equal share'
+                    
+                case 'recycled content'
+                
                     
             end
             
